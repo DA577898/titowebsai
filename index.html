@@ -195,14 +195,17 @@
             let lastScrollY = window.scrollY;
             let ticking = false;
             const offset = 75; // Adjust this value as needed
+            let disableHide = false;
     
             function onScroll() {
                 if (!ticking) {
                     window.requestAnimationFrame(() => {
-                        if (window.scrollY > lastScrollY) {
-                            header.classList.add('hidden-header');
-                        } else {
-                            header.classList.remove('hidden-header');
+                        if (!disableHide) {
+                            if (window.scrollY > lastScrollY) {
+                                header.classList.add('hidden-header');
+                            } else {
+                                header.classList.remove('hidden-header');
+                            }
                         }
                         lastScrollY = window.scrollY;
                         ticking = false;
@@ -226,6 +229,7 @@
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
                     const targetId = this.getAttribute('href').substring(1);
+                    disableHide = true;
                     if (targetId === "") {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     } else {
@@ -234,6 +238,15 @@
                         window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                     }
                 });
+            });
+    
+            // Reset disableHide flag after scrolling completes
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    disableHide = false;
+                }, 150); // Adjust the delay as needed
             });
         });
     </script>
