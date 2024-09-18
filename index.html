@@ -59,7 +59,7 @@
 <body>
     <header>
         <nav>
-            <a href="#">Home</a>
+            <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">Home</a>
             <a href="#about">About the Project</a>
             <a href="#team">Team Members</a>
             <a href="#committee">Committee & Advisors</a>
@@ -184,8 +184,8 @@
         <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; max-width: 800px; margin: 0 auto;">
             <div style="flex: 1; min-width: 200px;">
                 <h3 style="font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.5rem; color: white; margin-bottom: 1rem;">University of Central Florida</h3>
-                <p style="font-size: 1rem; color: #ccc;">Senior Design Project</p>
-                <p style="font-size: 1rem; color: #ccc;">Spring 2024</p>
+                <p style="font-size: 1rem; color: #ccc;">Senior Design Project | Spring 2024</p>
+                <p style="font-size: 1rem; color: #ccc;">Website by Daniel Hernandez, CS UG. da577898@ucf.edu</p>
             </div>
         </div>
     </footer>
@@ -220,6 +220,47 @@
             window.addEventListener('mousemove', onMouseMove);
         });
     </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            let lastScrollY = window.scrollY;
+            let ticking = false;
     
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        if (window.scrollY > lastScrollY) {
+                            header.classList.add('hidden-header');
+                        } else {
+                            header.classList.remove('hidden-header');
+                        }
+                        lastScrollY = window.scrollY;
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+    
+            function onMouseMove(event) {
+                if (event.clientY < 50) {
+                    header.classList.remove('hidden-header');
+                }
+            }
+    
+            window.addEventListener('scroll', onScroll);
+            window.addEventListener('mousemove', onMouseMove);
+    
+            // Smooth scrolling for header buttons
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
