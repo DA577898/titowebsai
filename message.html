@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Altitude Balloon Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: white;
+        }
+
+        /* Navigation bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Section Styles */
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            background-color: white;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .sticky-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 20px;
+        }
+
+        .section-content {
+            position: relative;
+            color: #333333;
+            font-size: 1.2rem;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333333;
+            position: relative;
+            top: 20px;
+        }
+
+        p {
+            text-align: center;
+            line-height: 1.6;
+            margin-top: 40px;
+            margin-bottom: 20px; /* Adjusted margin-bottom */
+        }
+
+        /* Header Section */
+        #header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        #header .image-container {
+            width: 50%;
+            height: 100%;
+            background-image: url('./Images/hq720.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #header .text-container {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #header h1 {
+            font-size: 4rem;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        /* Horizontal Team Members Layout */
+        #team .section-content, #committee .section-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #team .members, #committee .members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 70px;
+            margin: 0 auto;
+        }
+
+        #team .member, #committee .member {
+            text-align: center;
+            flex: 1 1 200px;
+            padding: 35px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #team .member h3, #committee .member h3 {
+            margin: 0;
+            color: #333333;
+        }
+
+        #team .member p, #committee .member p {
+            margin: 10px 0 0;
+            text-align: center;
+            color: #666666;
+        }
+
+        #team .member img, #committee .member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Scroll Snap */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            scroll-snap-type: y mandatory;
+        }
+
+        /* Styling for the "Coming Soon" text */
+        .coming-soon {
+            color: red;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            font-style: italic;
+        }
+
+        /* Adjust margin between the links */
+        section#documentation p {
+            margin-bottom: 20px; /* Added margin-bottom here */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #team .members, #committee .members {
+                gap: 40px;
+            }
+
+            #team .member, #committee .member {
+                flex: 1 1 150px;
+            }
+
+            #header h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #team .members, #committee .members {
+                gap: 20px;
+            }
+
+            #team .member, #committee .member {
+                flex: 1 1 100%;
+            }
+
+            #header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#header">Home</a>
+        <a href="#about">About the Project</a>
+        <a href="#team">Team Members</a>
+        <a href="#committee">Committee & Advisors</a>
+        <a href="#documentation">Documentation</a>
+    </nav>
+
+    <!-- Header Section -->
+    <section id="header">
+        <div class="image-container"></div>
+        <div class="text-container">
+            <h1>High Altitude Balloon</h1>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="sticky-container">
+            <div class="section-content">
+                <h2>About the Project</h2>
+                <p>
+                    Our high-altitude balloon project is aimed at collecting environmental data from the edge of space. 
+                    Using a combination of cutting-edge sensors and robust engineering, the project will help us study 
+                    atmospheric changes, temperature, pressure, and other factors at high altitudes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section id="team">
+        <div class="sticky-container">
+            <div class="section-content">
+                <h2>Team Members</h2>
+                <div class="members">
+                    <div class="member">
+                        <img src="./path/to/zion.jpg" alt="Zion Franz">
+                        <h3>Zion Franz</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                    <div class="member">
+                        <img src="./path/to/jake.jpg" alt="Jake Dorfman">
+                        <h3>Jake Dorfman</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                    <div class="member">
+                        <img src="./path/to/lily.jpg" alt="Lily Sigg">
+                        <h3>Lily Sigg</h3>
+                        <p>Photonics Engineering</p>
+                    </div>
+                    <div class="member">
+                        <img src="./path/to/hector.jpg" alt="Hector Parra">
+                        <h3>Hector Parra</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                    <div class="member">
+                        <img src="./path/to/sean.jpg" alt="Sean Rego">
+                        <h3>Sean Rego</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Section -->
+    <section id="committee">
+        <div class="sticky-container">
+            <div class="section-content">
+                <h2>Committee & Advisors</h2>
+                <div class="members">
+                    <div class="member">
+                        <img src="./path/to/peter.jpg" alt="Dr. Peter Delfyett">
+                        <h3>Dr. Peter Delfyett</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                    <div class="member">
+                        <img src="./path/to/justin.jpg" alt="Dr. Justin Phelps">
+                        <h3>Dr. Justin Phelps</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                    <div class="member">
+                        <img src="./path/to/reza.jpg" alt="Dr. Reza Abdolvand">
+                        <h3>Dr. Reza Abdolvand</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                    <div class="member">
+                        <img src="./path/to/enxia.jpg" alt="Dr. Enxia Zhang">
+                        <h3>Dr. Enxia Zhang</h3>
+                        <p>Electrical Engineering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation">
+        <div class="sticky-container">
+            <div class="section-content">
+                <h2>Documentation</h2>
+                <p>
+                    This section contains the project documentation, including reports and papers that detail the 
+                    objectives, design, and findings of the high-altitude balloon project.
+                </p>
+                <div class="links">
+                    <a href="./Files/Group_2_D&C.pdf">Divide and Conquer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
